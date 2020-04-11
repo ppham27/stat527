@@ -1,0 +1,109 @@
+\documentclass[letterpaper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{commath}
+\usepackage{enumerate}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{fullpage}
+
+\title{STAT 527: Assignment \#1}
+\author{Philip Pham}
+\date{\today}
+
+\DeclareMathOperator{\E}{E}
+\DeclareMathOperator{\Prob}{P}
+
+\begin{document}
+\maketitle
+
+\section*{Problem 1}
+
+\begin{enumerate}[(a)]
+\item temp
+  \begin{proof}
+    This follows from the definition of variance after some algebra.
+    \begin{align*}
+      &\E\left[
+      \left(\hat{f}(x) - f(x)\right)^2
+        \right]
+        = \E\left[
+        \left[\left(\hat{f}(x) - \E\left[\hat{f}(x)\right]\right)
+        +
+        \left(\E\left[\hat{f}(x)\right] - f(x)\right)
+        \right]^2
+        \right] \\
+      &=
+        \E\left[\left(\hat{f}(x) - \E\left[\hat{f}(x)\right]\right)^2\right]
+        +
+        2\E\left[
+        \left(\hat{f}(x) - \E\left[\hat{f}(x)\right]\right)
+        \left(\E\left[\hat{f}(x)\right] - f(x)\right)
+        \right]
+        +
+        \E\left[\left(\E\left[\hat{f}(x)\right] - f(x)\right)^2\right]
+      \\
+      &= \operatorname{var}\left(\hat{f}(x)\right)
+	+ \left(\E\left[\hat{f}(x)\right] - f(x)\right)^2
+        + 2\left(\E\left[\hat{f}(x)\right] - f(x)\right)\E\left[
+        \left(\hat{f}(x) - \E\left[\hat{f}(x)\right]\right)        
+        \right] \\
+      &= \left(\E\left[\hat{f}(x)\right] - f(x)\right)^2 +
+        \operatorname{var}\left(\hat{f}(x)\right).
+    \end{align*}
+  \end{proof}
+\item temp
+  \begin{proof}    
+    The prediction error is
+    \begin{align*}
+      &\E\left[
+      \left(y_{\text{new}} - \hat{f}\left(x_{\text{new}}\right)\right)^2
+      \right]      
+      = \E\left[
+        \left(f\left(x_{\text{new}}\right) + \epsilon_\text{new} -
+        \hat{f}\left(x_{\text{new}}\right)\right)^2
+        \right] \\
+      &= \E\left[
+        \left(\epsilon_\text{new} +
+        \left(f\left(x_{\text{new}}\right) -
+        \hat{f}\left(x_{\text{new}}\right)\right)\right)^2
+        \right] \\
+      &= \E\left[\epsilon_\text{new}^2\right]
+        + 2\E\left[\epsilon_\text{new}\left(f\left(x_{\text{new}}\right) -
+        \hat{f}\left(x_{\text{new}}\right)\right)\right]
+        + \left(\E\left[\hat{f}(x_\text{new})\right] -
+        f(x_\text{new})\right)^2 +
+        \operatorname{var}\left(\hat{f}\left(x_\text{new}\right)\right) \\
+      &= \sigma^2 +
+        \left(\E\left[\hat{f}(x_\text{new})\right] -
+        f(x_\text{new})\right)^2 +
+        \operatorname{var}\left(\hat{f}\left(x_\text{new}\right)\right).
+    \end{align*}
+
+    There is an additional $\sigma^2$ term to account for the variance of our
+    new observation.
+  \end{proof}
+\item temp
+  \begin{proof}
+    \begin{align*}
+      a \geq \E\left[L\right]
+      &= \int_0^\infty t \,\dif L(t) \\
+      &= \int_0^{a/\epsilon} t \,\dif L(t) + \int_{a/\epsilon}^\infty t \,\dif L(t) \\
+      &\geq \int_0^{a/\epsilon} t \,\dif L(t) + \frac{a}{\epsilon}\int_{a/\epsilon}^\infty \,\dif L(t) \\
+      &\geq \frac{a}{\epsilon}\int_{a/\epsilon}^\infty \,\dif L(t) = \frac{a}{\epsilon}\Prob\left(L > \frac{a}{\epsilon}\right).
+    \end{align*}
+
+    Thus, we have that
+    \begin{equation*}
+      \frac{a}{\epsilon}\Prob\left(L > \frac{a}{\epsilon}\right) \leq a
+      \Leftrightarrow
+      \Prob\left(L > \frac{a}{\epsilon}\right) \leq \epsilon
+      \Leftrightarrow
+      \Prob\left(\frac{L}{a} > \frac{1}{\epsilon}\right) \leq \epsilon.
+    \end{equation*}
+  \end{proof}
+\end{enumerate}
+
+\end{document}
