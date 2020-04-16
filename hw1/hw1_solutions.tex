@@ -22,7 +22,7 @@
 \section*{Problem 1}
 
 \begin{enumerate}[(a)]
-\item temp
+\item
   \begin{proof}
     This follows from the definition of variance after some algebra.
     \begin{align*}
@@ -54,7 +54,7 @@
         \operatorname{var}\left(\hat{f}(x)\right).
     \end{align*}
   \end{proof}
-\item temp
+\item
   \begin{proof}    
     The prediction error is
     \begin{align*}
@@ -85,7 +85,7 @@
     There is an additional $\sigma^2$ term to account for the variance of our
     new observation.
   \end{proof}
-\item temp
+\item
   \begin{proof}
     \begin{align*}
       a \geq \E\left[L\right]
@@ -104,6 +104,70 @@
       \Prob\left(\frac{L}{a} > \frac{1}{\epsilon}\right) \leq \epsilon.
     \end{equation*}
   \end{proof}
+\item
+  \begin{proof}
+    Note that $y = X\beta + \epsilon$, where
+    $\epsilon \sim \operatorname{N}\left(0, \sigma^2I\right)$, so
+    \begin{align*}
+      \hat{\beta}
+      &= \left(X^\top X\right)^{-1}X^\top y_i \\
+      &= \left(X^\top X\right)^{-1}X^\top \left(X\beta + \epsilon\right) \\
+      &= \beta + \left(X^\top X\right)^{-1}X^\top\epsilon \\
+      \hat{\beta} - \beta &= \left(X^\top X\right)^{-1}X^\top\epsilon.
+    \end{align*}
+
+    Thus, we have that
+    \begin{align*}
+      \E\left[\hat{\beta} - \beta\right]
+      &= \E\left[\left(X^\top X\right)^{-1}X^\top\epsilon\right]
+        = \E\left[\left(X^\top X\right)^{-1}X^\top\right]
+        \E\left[\epsilon\right] = 0 \\
+      \operatorname{var}\left(\hat{\beta} - \beta\right)
+      &=
+        \E\left[\left(X^\top X\right)^{-1}X^\top\epsilon\epsilon^\top X
+        \left(X^\top X\right)^{-1}\right]
+        = \sigma^2\E\left[\left(X^\top X\right)^{-1}\right].
+    \end{align*}
+    
+    If the design was fixed ($\left\{x_i\right\} \subset \mathbb{R}^p$ were
+    deterministic), then we simply have
+    $\operatorname{var}\left(\hat{\beta} - \beta\right) = \sigma^2\left(X^\top
+      X\right)^{-1}$, so
+    \begin{equation*}
+      \hat{\beta} - \beta \sim \operatorname{N}\left(0, \sigma^2\left(X^\top X\right)^{-1}\right)
+    \end{equation*}
+    
+
+    With a random design, we appeal to Slutsky's theorem.
+    $X^\top X = \sum_{i=1}^n x_i^\top x_i$, so by strong law of large numbers
+    $\left(X^\top X\right)/n \xrightarrow{\text{a.s.}} \Sigma$, where $\Sigma$
+    is a constant.
+
+    $X^\top\epsilon = \sum_{i=1}^n x_i\epsilon_i$, where the $x_i\epsilon_i$ are
+    i.i.d. and $\operatorname{var}\left(x_i\epsilon_i\right) = \sigma^2\Sigma$.
+
+    By CLT, we have that
+    \begin{equation*}
+      \sqrt{n}X^\top\epsilon \xrightarrow{d} \operatorname{N}\left(0, \sigma^2\Sigma\right)
+    \end{equation*}
+
+    So, we can now apply Slutsky's theorem to show that
+    \begin{align*}
+      \sqrt{n}\left(\hat{\beta} - \beta\right)
+      = \sqrt{n}\left(X^\top X\right)^{-1}X^\top\epsilon
+      \xrightarrow{d} \sqrt{n}\Sigma^{-1}\operatorname{N}\left(0, \sigma^2\Sigma\right)
+      &= \operatorname{N}\left(0, \sigma^2\Sigma^{-1}\Sigma\Sigma^{-1}\right) \\
+      &= \operatorname{N}\left(0, \sigma^2\Sigma^{-1}\right)
+    \end{align*}
+    as desired.
+  \end{proof}
+\end{enumerate}
+
+\section*{Problem 2}
+
+\begin{enumerate}[(a)]
+\item 
+\item 
 \end{enumerate}
 
 \end{document}
