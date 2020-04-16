@@ -8,6 +8,7 @@
 \usepackage{lmodern}
 \usepackage{microtype}
 \usepackage{fullpage}
+\usepackage{graphicx}
 
 \title{STAT 527: Assignment \#1}
 \author{Philip Pham}
@@ -148,14 +149,16 @@
 
     By CLT, we have that
     \begin{equation*}
-      \sqrt{n}X^\top\epsilon \xrightarrow{d} \operatorname{N}\left(0, \sigma^2\Sigma\right)
+      \frac{X^\top\epsilon}{\sqrt{n}}
+        \xrightarrow{d} \operatorname{N}\left(0, \sigma^2\Sigma\right)
     \end{equation*}
 
     So, we can now apply Slutsky's theorem to show that
     \begin{align*}
       \sqrt{n}\left(\hat{\beta} - \beta\right)
-      = \sqrt{n}\left(X^\top X\right)^{-1}X^\top\epsilon
-      \xrightarrow{d} \sqrt{n}\Sigma^{-1}\operatorname{N}\left(0, \sigma^2\Sigma\right)
+      =
+      \left(\frac{X^\top X}{n}\right)^{-1}\frac{X^\top\epsilon}{\sqrt{n}}
+      \xrightarrow{d} \Sigma^{-1}\operatorname{N}\left(0, \sigma^2\Sigma\right)
       &= \operatorname{N}\left(0, \sigma^2\Sigma^{-1}\Sigma\Sigma^{-1}\right) \\
       &= \operatorname{N}\left(0, \sigma^2\Sigma^{-1}\right)
     \end{align*}
@@ -166,8 +169,40 @@
 \section*{Problem 2}
 
 \begin{enumerate}[(a)]
-\item 
-\item 
-\end{enumerate}
+\item $f(x) = 2x$
+  \begin{figure}[h]
+    \centering
+    \includegraphics{mse_linear.pdf}
+  \end{figure}
+\item $f(x) = \sin(\pi x)$
+    \begin{figure}[h]
+      \centering
+      \includegraphics{mse_sin.pdf}
+    \end{figure}
+    \pagebreak
+  \item $f(x) = 2x + x^3 - 6x^4$
+    \begin{figure}[h!]
+      \centering
+      \includegraphics{mse_polynomial.pdf}
+    \end{figure}
 
+  \item $f(x) = 1/\left(1 + (5x)^2\right)$
+    \begin{figure}[h!]
+      \centering
+      \includegraphics{mse_inverse.pdf}
+    \end{figure}
+  \end{enumerate}
+
+  $n = 1000$ and 100 simulations were run for each case. Almost all the
+  estimators achieve the optimal MSE of 1 when $f$ is linear.
+
+  When $f$ is sinusoidal, the linear and degree 2 polynomial can no longer model
+  the data.
+
+  When $f$ is a higher-degree polynomial, the linear estimator does
+  terribly. Unsuprisingly, the degree 4 and degree 5 polynomials do the best.
+
+  When $f$ is an inverse polynomial function, increasing the degree of the
+  polynomial estimator helps, but only the non-parametric models are able to
+  achieve the theoretical best error of 1.
 \end{document}
