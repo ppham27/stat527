@@ -284,3 +284,5 @@ TSWLatexianTemp*
 _region_.tex
 
 .Rhistory
+
+.venv
