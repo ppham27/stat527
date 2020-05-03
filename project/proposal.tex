@@ -1,0 +1,31 @@
+\documentclass[letterpaper]{article}
+
+\usepackage{lmodern}
+\usepackage{microtype}
+
+\author{Philip Pham}
+\title{Final Project Proposal: Scaling Gaussian Processes}
+\date{\today}
+\usepackage{natbib}
+\bibliographystyle{unsrtnat}
+
+\begin{document}
+\maketitle
+
+I'm mainly interested in kernel methods, specfically Gaussian processes due to
+their Bayesian interpretation. I'm primarily concerned with practical aspects of
+working on large datasets: namely, the standard formulation of requires
+inverting an $N \times N$ matrix, which is an $O(N^3)$ operation
+\citep{gpbook}. I'd like to survey approximation methods that can scale Gaussian
+processes to larger datasets.
+
+To this end, I plan to give a brief survey of Gaussian processes, some
+intuition, and their connection with methods discussed in class
+\citep{visualgp}. Next, I plan to introduce some yet to be determined
+methods. Examples may be reduced-rank approximations, greedy methods, random
+Fourier features, and alternative kernels \citep{ntk}. For some of the easier to
+implement methods, I'd like to present some emprical results comparing how well
+the approximations perform.
+
+\bibliography{references}
+\end{document}
