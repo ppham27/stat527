@@ -286,3 +286,4 @@ _region_.tex
 .Rhistory
 
 .venv
+.ipynb_checkpoints
