@@ -88,6 +88,42 @@ def calculate_weights(n, h, k, x0):
   tail and head, at $k = 1$ and $k = 2$ do not differ much.
 \end{enumerate}
 
+\section*{Problem 2}
+\begin{enumerate}[(a)]
+  
+\item See Figure \ref{fig:regression_sin}.
+  \begin{figure}
+    \centering
+    \includegraphics{regression_sin.pdf}
+    \label{fig:regression_sin}
+    \caption{Estimates of $f(x) = \sin\left(\pi x\right)$.}
+  \end{figure}
+\item See Figure \ref{fig:regression_poly}.
+  \begin{figure}
+    \centering
+    \includegraphics{regression_poly.pdf}
+    \label{fig:regression_poly}
+    \caption{Estimates of $f(x) = 2x + x^6 - 6x^4$.}
+  \end{figure}
+\item See Figure \ref{fig:regression_inv}.
+  \begin{figure}
+    \centering
+    \includegraphics{regression_inv.pdf}
+    \label{fig:regression_inv}
+    \caption{Estimates of $f(x) = \left(1 + 25x^2\right)^{-1}$.}
+  \end{figure}
+
+  All three estimators do well with $f(x) = \sin\left(\pi x\right)$. The
+  Nadaraya-Watson estimator seems to have trouble with the tails.
+
+  For $f(x) = 2x + x^6 - 6x^4$, the local quadractic regression does best
+  here. The spline method uses many knots and appears quite noisy in particular.
+
+  For $f(x) = \left(1 + 25x^2\right)^{-1}$, all three estimators struggle. The
+  tails are badly modeled. The spline estimator does the worst and isn't able
+  separate the noise from the true signal.
+\end{enumerate}
+
 \end{document}
 %%% Local Variables:
 %%% TeX-command-extra-options: "-shell-escape"
